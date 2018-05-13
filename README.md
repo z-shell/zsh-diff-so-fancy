@@ -46,7 +46,7 @@ integrating with `git`.
 zplug "zdharma/zsh-diff-so-fancy", as:command, use:bin/git-dsf
 
 # Zgen
-zgen zdharma/zsh-diff-so-fancy
+zgen load zdharma/zsh-diff-so-fancy
 ```
 
 Without `as"program"`-like functionality the `.plugin.zsh` file picks up setup
