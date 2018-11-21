@@ -6,8 +6,8 @@
 # See following web page for explanation of the line "ZERO=...":
 # http://zdharma.org/Zsh-100-Commits-Club/Zsh-Plugin-Standard.html
 
-ZERO="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
-local _pth="${ZERO:h}/bin"
+0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
+local _pth="${0:h}/bin"
 
 if [[ -z "${path[(r)$_pth]}" ]]; then
     path+=( "$_pth" )
