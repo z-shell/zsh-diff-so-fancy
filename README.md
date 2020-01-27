@@ -43,7 +43,7 @@ integrating with `git`.
 
 ```zsh
 # Zplug
-zplug "zdharma/zsh-diff-so-fancy", as:command, use:bin/git-dsf
+zplug "zdharma/zsh-diff-so-fancy", as:command, use:"bin/"
 
 # Zgen
 zgen load zdharma/zsh-diff-so-fancy
