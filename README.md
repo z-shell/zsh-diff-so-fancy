@@ -12,7 +12,7 @@ With this Zsh plugin, you simply add two lines to `.zshrc`:
 
 ```zsh
 zplugin ice as"program" pick"bin/git-dsf"
-zplugin light zdharma/zsh-diff-so-fancy
+zplugin light z-shell/zsh-diff-so-fancy
 ```
 
 This will install `diff-so-fancy` on every account where you use Zshell, and automatically
@@ -43,10 +43,10 @@ integrating with `git`.
 
 ```zsh
 # Zplug
-zplug "zdharma/zsh-diff-so-fancy", as:command, use:"bin/"
+zplug "z-shell/zsh-diff-so-fancy", as:command, use:"bin/"
 
 # Zgen
-zgen load zdharma/zsh-diff-so-fancy
+zgen load z-shell/zsh-diff-so-fancy
 ```
 
 Without `as"program"`-like functionality the `.plugin.zsh` file picks up setup
