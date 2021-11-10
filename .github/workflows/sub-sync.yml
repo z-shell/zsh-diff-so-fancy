@@ -13,5 +13,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+
       - name: Checkout submodules
-        run: git submodule update --init --recursive
+        run: | 
+          git submodule update --init
+          git submodule update --remote --recursive --force --rebase        
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -m "Add changes"
+          git push 
+
