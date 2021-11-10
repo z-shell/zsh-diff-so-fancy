@@ -22,5 +22,4 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git add -A
           git commit -m "Add changes"
-          git push 
-
+          git push origin HEAD:main
