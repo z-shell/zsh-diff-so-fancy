@@ -1,4 +1,4 @@
-<h1> ZI + diff-so-fancy</h1>
+<h1> Zsh + diff-so-fancy</h1>
 
 # Introduction
 
