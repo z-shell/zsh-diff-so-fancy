@@ -1,6 +1,9 @@
-<h1> Zsh + diff-so-fancy</h1>
-
-# Introduction
+<h2 align="center">
+  <a href="https://github.com/z-shell/zi">
+    <img src="https://github.com/z-shell/zi/raw/main/docs/images/logo.svg" alt="Logo" width="80" height="80">
+  </a>
+❮ ZI ❯ Plugin - zsh-diff-so-fancy
+</h2>
 
 The project [so-fancy/diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) integration with ZI.
 
