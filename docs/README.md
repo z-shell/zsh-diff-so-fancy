@@ -1,9 +1,15 @@
 <h2 align="center">
   <a href="https://github.com/z-shell/zi">
-    <img src="https://github.com/z-shell/zi/raw/main/docs/images/logo.svg" alt="Logo" width="80" height="80">
+    <img src="https://github.com/z-shell/zi/raw/main/docs/images/logo.svg" alt="Logo" width="80" height="80" />
   </a>
 ❮ ZI ❯ Plugin - zsh-diff-so-fancy
 </h2>
+
+<div align="center">
+  <img src="img/zsh-diff-so-fancy.gif" alt="zsh-diff-so-fancy" width="70%" height="70%" />
+</div>
+
+---
 
 The project [so-fancy/diff-so-fancy](https://github.com/so-fancy/diff-so-fancy) integration with ZI.
 
