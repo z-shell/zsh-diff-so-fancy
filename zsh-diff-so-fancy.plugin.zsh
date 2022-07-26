@@ -4,11 +4,11 @@
 # up $PATH for "git dsf" to work. This file can be also plainly sourced.
 
 # See following web page for explanation of the line "ZERO=...":
-# https://github.com/z-shell/zi/wiki/Zsh-Plugin-Standard
+# https://wiki.zshell.dev/community/zsh_plugin_standard#zero-handling
+0="${ZERO:-${${0:#$ZSH_ARGZERO}:-${(%):-%N}}}"
+0="${${(M)0:#/*}:-$PWD/$0}"
 
-0="${${ZERO:-${0:#$ZSH_ARGZERO}}:-${(%):-%N}}"
-local _pth="${0:h}/bin"
-
-if [[ -z "${path[(r)$_pth]}" ]]; then
-    path+=( "$_pth" )
-fi
+# https://wiki.zshell.dev/community/zsh_plugin_standard#binaries-directory
+if [[ $PMSPEC != *b* ]] {
+  path+=( "${0:h}/bin" )
+}
