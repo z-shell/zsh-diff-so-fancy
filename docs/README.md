@@ -1,8 +1,8 @@
 <h1 align="center"><p>
   <a href="https://github.com/z-shell/zi">
-    <img src="https://github.com/z-shell/zi/raw/main/docs/images/logo.svg" alt="Logo" width="80px" height="80px" />
+    <img src="https://github.com/z-shell/zi/raw/main/docs/images/logo.png" alt="Logo" width="80px" height="80px" />
   </a>
-❮ ZI ❯ Plugin - zsh-diff-so-fancy
+❮ Zi ❯ Plugin - zsh-diff-so-fancy
 </p></h1>
 
 <div align="center">
