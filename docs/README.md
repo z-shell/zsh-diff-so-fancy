@@ -5,7 +5,7 @@
 ❮ Zi ❯ Plugin - zsh-diff-so-fancy
 </p></h1>
 <div align="center">
-  <img align="center" src="https://raw.githubusercontent.com/z-shell/wiki/main/static/img/gif/zsh-diff-so-fancy.gif" alt="zsh-diff-so-fancy" width="80%" height="auto" />
+  <p><img align="center" src="https://raw.githubusercontent.com/z-shell/wiki/main/static/img/gif/zsh-diff-so-fancy.gif" alt="zsh-diff-so-fancy" /></p>
 </div><hr />
 
 ## The `diff-so-fancy`
