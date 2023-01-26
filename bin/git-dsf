@@ -1,8 +1,12 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 # Git will search $PATH for this file, when invoked by "git dsf ...".
 
 f() {
-  [ -z "${GIT_PREFIX}" ] || builtin cd "${GIT_PREFIX}" && git diff --color "$@" | diff-so-fancy --patch | less --tabs=4 -RFX
+  if [[ -n ${GIT_PREFIX} ]]; then
+    builtin cd -q ${GIT_PREFIX} && \
+    command git diff -p --stat --indent-heuristic --color "$@" | diff-so-fancy --patch | less --tabs=4 -FRXi
+  fi
 }
+
 f "$@"
