@@ -1,0 +1,13 @@
+#!/usr/bin/env zsh
+
+# Use diff for unified output, and pipe the output to diff-so-fancy
+
+ff() {
+  if [[ -z $1 ]] && [[ -z $2 ]]; then
+    print -Pr "Provide two files to show diff."
+    return 1
+  else
+    command diff -u "$1" "$2" --color=auto | diff-so-fancy | less --tabs=4 -FRXSi
+  fi
+}
+ff "$@"

@@ -3,10 +3,7 @@
 # Git will search $PATH for this file, when invoked by "git dsf ...".
 
 f() {
-  if [[ -n ${GIT_PREFIX} ]]; then
-    builtin cd -q ${GIT_PREFIX} && \
-    command git diff -p --stat --indent-heuristic --color "$@" | diff-so-fancy --patch | less --tabs=4 -FRXi
-  fi
+  [[ -z "${GIT_PREFIX}" ]] || builtin cd -q "${GIT_PREFIX}" && \
+    command git diff --color=auto "$@" | diff-so-fancy --patch | less --tabs=4 -FRXSi
 }
-
 f "$@"
