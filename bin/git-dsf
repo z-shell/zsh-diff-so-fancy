@@ -1,9 +1,13 @@
 #!/usr/bin/env zsh
 
 # Git will search $PATH for this file, when invoked by "git dsf ...".
-
 f() {
+  # Use GIT_DSF_LESS_OPTS if set, otherwise fallback to a default.
+  # The plugin zsh-diff-so-fancy.plugin.zsh typically sets a default for GIT_DSF_LESS_OPTS.
+  local less_opts="${GIT_DSF_LESS_OPTS:---tabs=4 -FRXSi}"
+
   [[ -z "${GIT_PREFIX}" ]] || builtin cd -q "${GIT_PREFIX}" && \
-    command git diff --color=auto "$@" | diff-so-fancy --patch | less --tabs=4 -FRXSi
+    command git diff --color=always "$@" | diff-so-fancy --patch | less "${less_opts}"
 }
+
 f "$@"

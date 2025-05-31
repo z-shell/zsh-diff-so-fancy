@@ -1,0 +1,36 @@
+---
+name: Trunk Code Quality
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+permissions: read-all
+
+jobs:
+  trunk-check:
+    name: Trunk Code Quality Runner
+    runs-on: ubuntu-latest
+    # Provide minimal permissions instead of write-all
+    permissions:
+      pull-requests: write
+      checks: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Optional caching for trunk to speed up subsequent runs
+      - name: Cache trunk
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/trunk
+          key: ${{ runner.os }}-trunk-${{ hashFiles('.trunk/trunk.yaml') }}
+
+      - name: Trunk Code Quality
+        uses: trunk-io/trunk-action@v1

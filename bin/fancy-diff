@@ -3,11 +3,26 @@
 # Use diff for unified output, and pipe the output to diff-so-fancy
 
 ff() {
-  if [[ -z $1 ]] && [[ -z $2 ]]; then
-    print -Pr "Provide two files to show diff."
+  if (( $# != 2 )); then
+    print -Pr "%F{red}Error: Exactly two file arguments are required.%f" >&2
+    print -P "Usage: fancy-diff <file1> <file2>" >&2
     return 1
-  else
-    command diff -u "$1" "$2" --color=auto | diff-so-fancy | less --tabs=4 -FRXSi
   fi
+
+  if [[ ! -f "$1" ]]; then
+    print -Pr "%F{red}Error: File '$1' not found.%f" >&2
+    return 1
+  fi
+
+  if [[ ! -f "$2" ]]; then
+    print -Pr "%F{red}Error: File '$2' not found.%f" >&2
+    return 1
+  fi
+
+  # Use FANCY_DIFF_LESS_OPTS if set, otherwise fallback to a default.
+  # The plugin typically sets a default for FANCY_DIFF_LESS_OPTS.
+  local less_opts="${FANCY_DIFF_LESS_OPTS:---tabs=4 -FRXSi}"
+  command diff -u "$1" "$2" --color=always | diff-so-fancy --patch | less "${less_opts}"
 }
+
 ff "$@"
