@@ -13,7 +13,8 @@ concurrency:
 permissions: read-all
 
 jobs:
-  test:
+  trunk-check:
+    name: Trunk Code Quality Runner
     runs-on: ubuntu-latest
     # Provide minimal permissions instead of write-all
     permissions:
@@ -33,5 +34,3 @@ jobs:
 
       - name: Trunk Code Quality
         uses: trunk-io/trunk-action@v1
-        with:
-          post-annotations: true
