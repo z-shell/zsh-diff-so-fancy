@@ -19,13 +19,18 @@ if ! command -v diff-so-fancy >/dev/null 2>&1; then
   return 1
 fi
 
-# Default options for `less` used by `fancy-diff`.
-# Users can override this by setting FANCY_DIFF_LESS_OPTS in their zshrc.
-: "${FANCY_DIFF_LESS_OPTS:=--tabs=4 -FRXSi}"
+# Create the variables in the correct scope using typeset
+# This prevents them from leaking into the global namespace
+# Reference: https://github.com/z-shell/zsh-diff-so-fancy/issues/30
+() {
+  # Default options for `less` used by `fancy-diff`.
+  # Users can override this by setting FANCY_DIFF_LESS_OPTS in their zshrc.
+  typeset -g FANCY_DIFF_LESS_OPTS="${FANCY_DIFF_LESS_OPTS:---tabs=4 -FRXSi}"
 
-# Default options for `less` used by `git-dsf`.
-# Users can override this by setting GIT_DSF_LESS_OPTS in their zshrc.
-: "${GIT_DSF_LESS_OPTS:=--tabs=4 -FRXSi}"
+  # Default options for `less` used by `git-dsf`.
+  # Users can override this by setting GIT_DSF_LESS_OPTS in their zshrc.
+  typeset -g GIT_DSF_LESS_OPTS="${GIT_DSF_LESS_OPTS:---tabs=4 -FRXSi}"
+}
 
 # https://wiki.zshell.dev/community/zsh_plugin_standard#binaries-directory
 if [[ $PMSPEC != *b* ]] {
@@ -39,6 +44,11 @@ zsh_diff_so_fancy_plugin_unload() {
     # This reconstructs the path based on $0, relying on its initial normalization.
     path=( "${(@)path:#${0:h}/bin}" )
   fi
+
+  # Unset the global variables if they were set by this plugin
+  # Note: We avoid unsetting if they might have been set by the user
+  unset -f "FANCY_DIFF_LESS_OPTS" "GIT_DSF_LESS_OPTS" 2>/dev/null
+
+  # Clean up the function itself
   unfunction zsh_diff_so_fancy_plugin_unload
-  # Add any other cleanup needed, like unsetting global variables or options set by the plugin.
 }

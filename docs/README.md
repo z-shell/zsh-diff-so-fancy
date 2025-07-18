@@ -28,6 +28,20 @@ A simple plugin integrating [so-fancy/diff-so-fancy](https://github.com/so-fancy
    - `git dsf <files>` to see a diff rendered by diff-so-fancy
    - `fancy-diff <file1> <file2>` to compare two files with diff-so-fancy
 
+## Customization
+
+You can customize the `less` options by setting these environment variables in your `.zshrc` before loading the plugin:
+
+```shell
+# Customize less options for fancy-diff
+export FANCY_DIFF_LESS_OPTS="--tabs=2 -RFX"
+
+# Customize less options for git dsf
+export GIT_DSF_LESS_OPTS="--tabs=2 -FRXS"
+```
+
+The default is `--tabs=4 -FRXSi` for both commands if not specified.
+
 ## Manual Configuration
 
 ```shell
@@ -58,6 +72,12 @@ git config --global interactive.diffFilter "diff-so-fancy --patch"
   Use Unicode line-drawing characters for file headers (disable if your terminal cannot display them).
 - **rulerWidth** (int, default: full width)
   Set a fixed width for the file header separator.
+
+### Plugin Details
+
+- Both `fancy-diff` and `git-dsf` use the `--patch` flag with `diff-so-fancy` to preserve the original diff format in the output, which is useful for interoperability with tools that parse diff output.
+- The plugin follows the [Zsh Plugin Standard](https://wiki.zshell.dev/community/zsh_plugin_standard) and provides an unload function for plugin managers that support unloading.
+- The plugin checks if `diff-so-fancy` is installed and provides a helpful warning if it's not found.
 
 ### Installation with [Zi](https://github.com/z-shell/zi)
 
