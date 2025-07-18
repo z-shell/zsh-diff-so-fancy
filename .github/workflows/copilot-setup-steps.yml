@@ -1,0 +1,63 @@
+name: GitHub Copilot Coding Agent Setup Guide
+
+# This file is used by GitHub Copilot Coding Agent to set up the environment
+# See: https://docs.github.com/en/enterprise-cloud@latest/copilot/how-tos/agents/copilot-coding-agent/customizing-the-development-environment-for-copilot-coding-agent
+
+on:
+  # This workflow is intended to be used by GitHub Copilot
+  workflow_dispatch:
+
+# Explicitly define minimum required permissions
+permissions:
+  contents: read
+
+jobs:
+  setup-guide:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Prerequisites
+        run: |
+          echo "::setup::Install ZSH"
+          sudo apt-get update
+          sudo apt-get install -y zsh
+
+      - name: Setup diff-so-fancy
+        run: |
+          echo "::setup::Install diff-so-fancy"
+          git clone https://github.com/so-fancy/diff-so-fancy.git /tmp/diff-so-fancy
+          sudo cp /tmp/diff-so-fancy/diff-so-fancy /usr/local/bin/
+          sudo chmod +x /usr/local/bin/diff-so-fancy
+
+      - name: Test Environment
+        run: |
+          echo "::test::Test diff-so-fancy installation"
+          diff-so-fancy --version
+
+      - name: Setup Instructions
+        run: |
+          echo "::info::Plugin Usage"
+          echo "This zsh plugin provides:"
+          echo "- git dsf: A Git subcommand to run Git diffs through diff-so-fancy"
+          echo "- fancy-diff: A helper to compare two files with diff-so-fancy"
+
+          echo "::info::Environment Variables"
+          echo "You can customize the output by setting these environment variables:"
+          echo "- FANCY_DIFF_LESS_OPTS: Options for less when using fancy-diff"
+          echo "- GIT_DSF_LESS_OPTS: Options for less when using git dsf"
+
+          echo "::info::Testing the plugin"
+          echo "To test the plugin after changes:"
+          echo "1. Run 'zsh' to start a new zsh session"
+          echo "2. Source the plugin: source zsh-diff-so-fancy.plugin.zsh"
+          echo "3. Create two test files with different content"
+          echo "4. Run: fancy-diff file1 file2"
+          echo "5. Run: git dsf (in a git repository)"
+
+      - name: Development Workflow
+        run: |
+          echo "::info::Development Workflow"
+          echo "1. Make changes to zsh-diff-so-fancy.plugin.zsh or scripts in bin/"
+          echo "2. Ensure scripts have proper error handling and comments"
+          echo "3. Test changes in a zsh shell"
+          echo "4. Update documentation in docs/README.md if needed"
+          echo "5. Run trunk check before committing: trunk check"
