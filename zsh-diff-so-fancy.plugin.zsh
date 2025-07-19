@@ -21,10 +21,12 @@ fi
 
 # Default options for `less` used by `fancy-diff`.
 # Users can override this by setting FANCY_DIFF_LESS_OPTS in their zshrc.
+typeset -g FANCY_DIFF_LESS_OPTS
 : "${FANCY_DIFF_LESS_OPTS:=--tabs=4 -FRXSi}"
 
 # Default options for `less` used by `git-dsf`.
 # Users can override this by setting GIT_DSF_LESS_OPTS in their zshrc.
+typeset -g GIT_DSF_LESS_OPTS
 : "${GIT_DSF_LESS_OPTS:=--tabs=4 -FRXSi}"
 
 # https://wiki.zshell.dev/community/zsh_plugin_standard#binaries-directory
