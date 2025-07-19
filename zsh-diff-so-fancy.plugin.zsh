@@ -47,7 +47,7 @@ zsh_diff_so_fancy_plugin_unload() {
 
   # Unset the global variables if they were set by this plugin
   # Note: We avoid unsetting if they might have been set by the user
-  unset -f "FANCY_DIFF_LESS_OPTS" "GIT_DSF_LESS_OPTS" 2>/dev/null
+  unset FANCY_DIFF_LESS_OPTS GIT_DSF_LESS_OPTS 2>/dev/null
 
   # Clean up the function itself
   unfunction zsh_diff_so_fancy_plugin_unload
