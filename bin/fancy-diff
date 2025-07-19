@@ -22,6 +22,10 @@ ff() {
   # Use FANCY_DIFF_LESS_OPTS if set, otherwise fallback to a default.
   # The plugin typically sets a default for FANCY_DIFF_LESS_OPTS.
   local less_opts="${FANCY_DIFF_LESS_OPTS:---tabs=4 -FRXSi}"
+
+  # Run diff with unified output (-u), colorized, and pipe through diff-so-fancy
+  # The --patch flag preserves the original diff format in the output
+  # This is useful for interoperability with tools that parse diff output
   command diff -u "$1" "$2" --color=always | diff-so-fancy --patch | less "${less_opts}"
 }
 
