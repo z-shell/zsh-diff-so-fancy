@@ -26,7 +26,7 @@ jobs:
 
       # Optional caching for trunk to speed up subsequent runs
       - name: Cache trunk
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: |
             ~/.cache/trunk
